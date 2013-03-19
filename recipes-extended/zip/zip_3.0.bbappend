@@ -1,0 +1,4 @@
+
+# Fix GNU_HASH
+TARGET_CC_ARCH += "${LDFLAGS}"
+
