@@ -20,6 +20,9 @@ RCONFLICTS_${PN} += "petalinux-world"
 RDEPENDS_${PN} = "\
 	dropbear \
 	zlib \
+	mtd-utils \
+	strace \
+	netperf \
 	"
 
 # Recommended
