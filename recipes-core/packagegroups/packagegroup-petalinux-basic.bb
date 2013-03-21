@@ -35,6 +35,7 @@ RDEPENDS_${PN} = "\
 	${VIRTUAL-RUNTIME_init_manager} \
 	${VIRTUAL-RUNTIME_dev_manager} \
 	${VIRTUAL-RUNTIME_update-alternatives} \
+	run-postinsts \
 	${MACHINE_ESSENTIAL_EXTRA_RDEPENDS}"
 
 # Recommended
