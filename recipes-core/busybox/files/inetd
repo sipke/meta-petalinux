@@ -1,5 +1,5 @@
 #!/bin/sh
-DAEMON=/usr/sbin/inetd
+DAEMON=/sbin/inetd
 NAME=inetd
 DESC="Busybox inet Daemon"
 
