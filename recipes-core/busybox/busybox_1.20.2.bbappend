@@ -6,12 +6,19 @@ SRC_URI_append += "file://inetd \
 				file://defconfig \
 				"
 
-PACKAGES =+ "${PN}-inetd"
-INITSCRIPT_PACKAGES =+ "${PN}-inetd"
+PACKAGES =+ "${@plnx_enable_busybox_package('inetd', d)}"
+INITSCRIPT_PACKAGES =+ "${@plnx_enable_busybox_package('inetd', d)}"
 FILES_${PN}-inetd = "${sysconfdir}/init.d/inetd.${PN} ${sysconfdir}/inetd.conf"
 INITSCRIPT_NAME_${PN}-inetd = "inetd.${PN}"
 INITSCRIPT_PARAMS_${PN}-inetd = "start 65 S ."
 CONFFILES_${PN}-inetd = "${sysconfdir}/inetd.conf"
+
+def plnx_enable_busybox_package(f, d):
+	distro_features = d.getVar('DISTRO_FEATURES', True).split()
+	if f in distro_features:
+		return "${PN}-" + f
+	else:
+		return ""
 
 def plnx_features_to_busybox_settings(d):
 	distro_features = d.getVar('DISTRO_FEATURES', True).split()
