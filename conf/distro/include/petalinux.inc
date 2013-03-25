@@ -37,3 +37,15 @@ INHERIT += "poky-sanity"
 
 WARN_QA = "textrel pkgvarcheck"
 ERROR_QA = "dev-so debug-deps dev-deps debug-files arch la2 pkgconfig la perms useless-rpaths rpaths staticdev ldflags"
+
+# BusyBox features
+DISTRO_FEATURES += "busybox-hd \
+	busybox-ftpd \
+	busybox-ftp \
+	busybox-telnetd \
+	busybox-mdev \
+	busybox-inetd \
+	busybox-httpd \
+	ipv4 \
+	ipv6 \
+	"
