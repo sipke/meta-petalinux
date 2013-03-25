@@ -87,6 +87,15 @@ def plnx_features_to_busybox_settings(d):
         "CONFIG_FEATURE_IFCONFIG_HW", \
         "CONFIG_FEATURE_IFCONFIG_BROADCAST_PLUS" \
         ], cnf, rem)
+    busybox_cfg('busybox-ifupdown', distro_features, \
+        ["CONFIG_IFUPDOWN", \
+        "CONFIG_FEATURE_IFUPDOWN_IP", \
+        "CONFIG_FEATURE_IFUPDOWN_IP_BUILTIN", \
+        "CONFIG_FEATURE_IFUPDOWN_IPV4", \
+        "CONFIG_FEATURE_IFUPDOWN_IPV6", \
+        "CONFIG_FEATURE_IFUPDOWN_MAPPING", \
+        "CONFIG_FEATURE_IFUPDOWN_EXTERNAL_DHCP" \
+        ], cnf, rem)
     busybox_cfg('busybox-hd', distro_features, \
         ["CONFIG_HEXDUMP", \
         "CONFIG_FEATURE_HEXDUMP_REVERSE", \
