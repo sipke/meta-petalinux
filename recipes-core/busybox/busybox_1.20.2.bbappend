@@ -24,7 +24,8 @@ def plnx_features_to_busybox_settings(d):
     distro_features = d.getVar('DISTRO_FEATURES', True).split()
     cnf, rem = ([], [])
     busybox_cfg('busybox-mdev', distro_features, \
-        ["CONFIG_MDEV CONFIG_FEATURE_MDEV_CONF", \
+        ["CONFIG_MDEV", \
+        "CONFIG_FEATURE_MDEV_CONF", \
         "CONFIG_FEATURE_MDEV_RENAME", \
         "CONFIG_FEATURE_MDEV_RENAME_REGEXP", \
         "CONFIG_FEATURE_MDEV_EXEC", \
