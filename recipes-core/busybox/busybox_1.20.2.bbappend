@@ -112,3 +112,9 @@ def plnx_features_to_busybox_del(d):
 
 OE_FEATURES += "${@plnx_features_to_busybox_conf(d)}"
 OE_DEL      += "${@plnx_features_to_busybox_del(d)}"
+
+# busybox do_install upstream uses defconfig to check whether a
+# feature is enabled
+do_install_prepend () {
+	cp ${S}/.config ${WORKDIR}/defconfig
+}
