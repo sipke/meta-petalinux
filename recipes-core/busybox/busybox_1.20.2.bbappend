@@ -15,7 +15,7 @@ CONFFILES_${PN}-inetd = "${sysconfdir}/inetd.conf"
 
 def plnx_enable_busybox_package(f, d):
     distro_features = d.getVar('DISTRO_FEATURES', True).split()
-    if f in distro_features:
+    if "busybox-" + f in distro_features:
         return "${PN}-" + f
     else:
         return ""
