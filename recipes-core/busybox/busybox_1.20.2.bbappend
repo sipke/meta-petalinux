@@ -20,6 +20,41 @@ def plnx_enable_busybox_package(f, d):
     else:
         return ""
 
+def plnx_features_extra(cnf, rem):
+    extra_features=["CONFIG_EXTRA_COMPAT", \
+        "CONFIG_INCLUDE_SUSv2", \
+        "CONFIG_FEATURE_VERBOSE_USAGE", \
+        "CONFIG_INSTALL_NO_USR", \
+        "CONFIG_UNICODE_SUPPORT", \
+        "CONFIG_NICE", \
+        "CONFIG_SHA1SUM", \
+        "CONFIG_SHA256SUM", \
+        "CONFIG_SHA512SUM", \
+        "CONFIG_STAT", \
+        "CONFIG_FEATURE_STAT_FORMAT", \
+        "CONFIG_MKFS_VFAT", \
+        "CONFIG_GETOPT", \
+        "CONFIG_FEATURE_GETOPT_LONG", \
+        "CONFIG_TOP", \
+        "CONFIG_FEATURE_TOP_CPU_USAGE_PERCENTAGE", \
+        "CONFIG_FEATURE_TOP_CPU_GLOBAL_PERCENTS", \
+        "CONFIG_FEATURE_TOP_SMP_CPU", \
+        "CONFIG_FEATURE_TOP_DECIMALS", \
+        "CONFIG_FEATURE_TOP_SMP_PROCESS", \
+        "CONFIG_FEATURE_TOPMEM", \
+        "CONFIG_MOUNT", \
+        "CONFIG_FEATURE_MOUNT_VERBOSE", \
+        "CONFIG_FEATURE_MOUNT_HELPERS", \
+        "CONFIG_FEATURE_MOUNT_LABEL", \
+        "CONFIG_FEATURE_MOUNT_NFS", \
+        "CONFIG_FEATURE_MOUNT_CIFS", \
+        "CONFIG_FEATURE_MOUNT_FLAGS", \
+        "CONFIG_FEATURE_MOUNT_FSTAB", \
+        "CONFIG_WATCHDOG", \
+        ]
+    cnf.extend([token + '=y' for token in extra_features])
+    rem.extend(['/^[# ]*' + token + '[ =]/d' for token in extra_features])
+
 def plnx_features_to_busybox_settings(d):
     distro_features = d.getVar('DISTRO_FEATURES', True).split()
     cnf, rem = ([], [])
@@ -40,13 +75,6 @@ def plnx_features_to_busybox_settings(d):
         ["CONFIG_FTPGET", \
         "CONFIG_FTPPUT", \
         "CONFIG_FEATURE_FTPGETPUT_LONG_OPTIONS" \
-        ], cnf, rem)
-    busybox_cfg('busybox-ps', distro_features, \
-        ["CONFIG_PS", \
-        "CONFIG_FEATURE_PS_WIDE", \
-        "CONFIG_FEATURE_PS_LONG", \
-        "CONFIG_FEATURE_PS_TIME", \
-        "CONFIG_FEATURE_PS_ADDITIONAL_COLUMNS" \
         ], cnf, rem)
     busybox_cfg('busybox-telnetd', distro_features, \
         ["CONFIG_TELNETD", \
@@ -80,28 +108,12 @@ def plnx_features_to_busybox_settings(d):
         "CONFIG_FEATURE_HTTPD_PROXY", \
         "CONFIG_FEATURE_HTTPD_GZIP" \
         ], cnf, rem)
-    busybox_cfg('busybox-ifconfig', distro_features, \
-        ["CONFIG_IFCONFIG", \
-        "CONFIG_FEATURE_IFCONFIG_STATUS", \
-        "CONFIG_FEATURE_IFCONFIG_SLIP", \
-        "CONFIG_FEATURE_IFCONFIG_MEMSTART_IOADDR_IRQ", \
-        "CONFIG_FEATURE_IFCONFIG_HW", \
-        "CONFIG_FEATURE_IFCONFIG_BROADCAST_PLUS" \
-        ], cnf, rem)
-    busybox_cfg('busybox-ifupdown', distro_features, \
-        ["CONFIG_IFUPDOWN", \
-        "CONFIG_FEATURE_IFUPDOWN_IP", \
-        "CONFIG_FEATURE_IFUPDOWN_IP_BUILTIN", \
-        "CONFIG_FEATURE_IFUPDOWN_IPV4", \
-        "CONFIG_FEATURE_IFUPDOWN_IPV6", \
-        "CONFIG_FEATURE_IFUPDOWN_MAPPING", \
-        "CONFIG_FEATURE_IFUPDOWN_EXTERNAL_DHCP" \
-        ], cnf, rem)
     busybox_cfg('busybox-hd', distro_features, \
         ["CONFIG_HEXDUMP", \
         "CONFIG_FEATURE_HEXDUMP_REVERSE", \
         "CONFIG_HD", \
         ], cnf, rem)
+    plnx_features_extra(cnf, rem)
     return "\n" + "\n".join(cnf), "\n" + "\n".join(rem)
 
 def plnx_features_to_busybox_conf(d):
@@ -112,6 +124,7 @@ def plnx_features_to_busybox_del(d):
     return rem
 
 OE_FEATURES += "${@plnx_features_to_busybox_conf(d)}"
+
 OE_DEL      += "${@plnx_features_to_busybox_del(d)}"
 
 # busybox do_install upstream uses defconfig to check whether a
