@@ -5,6 +5,7 @@
 USERDISTRO := "${DISTRO}"
 DISTRO = "petalinux"
 DISTRO_NAME = "PetaLinux"
+DISTRO_VERSION ?= ""
 
 TARGET_VENDOR = "-petalinux"
 TCLIBCAPPEND = ""
