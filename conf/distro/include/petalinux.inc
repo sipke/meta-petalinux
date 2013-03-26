@@ -46,6 +46,7 @@ DISTRO_FEATURES += "busybox-hd \
 	busybox-mdev \
 	busybox-inetd \
 	busybox-httpd \
+	busybox-bzip2 \
 	ipv4 \
 	ipv6 \
 	"
