@@ -111,7 +111,10 @@ def plnx_features_to_busybox_settings(d):
     busybox_cfg('busybox-hd', distro_features, \
         ["CONFIG_HEXDUMP", \
         "CONFIG_FEATURE_HEXDUMP_REVERSE", \
-        "CONFIG_HD", \
+        "CONFIG_HD" \
+        ], cnf, rem)
+    busybox_cfg('busybox-bzip2', distro_features, \
+        ["CONFIG_BZIP2" \
         ], cnf, rem)
     plnx_features_extra(cnf, rem)
     return "\n" + "\n".join(cnf), "\n" + "\n".join(rem)
