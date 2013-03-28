@@ -23,6 +23,12 @@ RDEPENDS_${PN} = "\
 	mtd-utils \
 	strace \
 	netperf \
+	tcpdump \
+	portmap \
+	iptables \
+	ethtool \
+	bridge-utils \
+	iproute2 \
 	"
 
 # Recommended
