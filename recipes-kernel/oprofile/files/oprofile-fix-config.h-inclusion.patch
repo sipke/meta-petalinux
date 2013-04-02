@@ -1,0 +1,16 @@
+Fix config.h inclusion.
+---
+diff --git a/libutil++/bfd_support.h b/libutil++/bfd_support.h
+--- a/libutil++/bfd_support.h
++++ b/libutil++/bfd_support.h
+@@ -11,6 +11,7 @@
+ #ifndef BFD_SUPPORT_H
+ #define BFD_SUPPORT_H
+
++#include "config.h"
+ #include "utility.h"
+ #include "op_types.h"
+ #include "locate_images.h"
+-- 
+1.7.4.1
+
