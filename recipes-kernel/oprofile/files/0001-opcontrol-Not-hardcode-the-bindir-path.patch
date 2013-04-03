@@ -1,0 +1,25 @@
+Subject: opcontrol: Not hardcode the bindir path.
+
+Not hardcode the bindir path in opcontrol.
+
+Signed-off-by: Wendy Liang <jliang@xilinx.com>
+
+diff --git a/utils/opcontrol b/utils/opcontrol
+index 0951574..71b9b81 100644
+--- a/utils/opcontrol
++++ b/utils/opcontrol
+@@ -2155,9 +2155,8 @@ help_start_daemon_with_ibs()
+ 
+ # determine the location of opcontrol and related programs
+ if test -z "$OPDIR"; then
+-	BINDIR="/usr/bin"
+-	OPCONTROL=`$BINDIR/which $0`
+-	OPDIR=`$BINDIR/dirname $OPCONTROL`
++	OPCONTROL=`which $0`
++	OPDIR=`dirname $OPCONTROL`
+ fi
+ 
+ PATH=$OPDIR:/usr/local/bin:/usr/local/sbin:/bin:/sbin:/usr/bin:/usr/sbin
+-- 
+1.7.3.2
+
