@@ -8,7 +8,7 @@ do_install_petalinuxissue () {
 	echo "" > ${D}${sysconfdir}/hostname
 
 	install -m 644 ${WORKDIR}/issue ${D}${sysconfdir}/issue
-	install -m 644 ${WORKDIR}/issue ${D}${sysconfdir}/issue.net
+	install -m 644 ${WORKDIR}/issue.net ${D}${sysconfdir}/issue.net
 	if [ -n "${DISTRO_NAME}" ]; then
 		printf "${DISTRO_NAME} " >> ${D}${sysconfdir}/issue
 		printf "${DISTRO_NAME} " >> ${D}${sysconfdir}/issue.net
